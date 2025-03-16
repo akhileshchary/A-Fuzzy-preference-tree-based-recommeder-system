@@ -1,119 +1,65 @@
-create database fuzzy;
-
-
-use fuzzy;
-
-
-
-CREATE TABLE admin(
-
- username VARCHAR(50),
-
- password VARCHAR(50)
-
-) ;
-
-
-insert into admin values ('admin','admin');
-
-
-
-CREATE TABLE user(
- 
- id int(11) NOT NULL auto_increment,
-
-  username varchar(45) default NULL,
-
-  password varchar(45) default NULL,
-
-  email varchar(45) default NULL,
-
-  mobile varchar(45) default NULL,
-
-  address varchar(45) default NULL,
-
-  dob varchar(45) default NULL,
-
-  gender varchar(45) default NULL,
-
-  pincode varchar(45) default NULL,
-
-  status varchar(45) default NULL,
-
-  image longblob,
-
-  PRIMARY KEY  (id)
-
-) ;
-
-
-CREATE TABLE categories(
-
-si_no int(11) NOT NULL auto_increment,
-
- categorie VARCHAR(50),
-
-PRIMARY KEY  (si_no)
-
-) ;
-
-
-
-CREATE TABLE posts(
-
-id int(11) NOT NULL auto_increment,
-
-p_name text,
-
-p_price text,
-
-p_desc text,
-
-p_image longblob,
-
-categorie text,
-
-rank text,
-
-PRIMARY KEY  (id)
-
-) ;
-
-
-
-CREATE TABLE search(
-
-id int(11) NOT NULL auto_increment,
-
-user text,
-
-p_name text,
-
-categorie text,
-
-keyword text,
-
-dt text,
-
-PRIMARY KEY  (id)
-
-) ;
-
-
-
-CREATE TABLE recommendations(
-
-id int(11) NOT NULL auto_increment,
-
-rec_by text,
-
-rec_details text,
-
-p_name text,
-
-categorie text,
-dt text,
-
-PRIMARY KEY  (id)
-
-) ;
+-- Create database
+CREATE DATABASE IF NOT EXISTS fuzzy;
+USE fuzzy;
+
+-- Admin table
+CREATE TABLE admin (
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL -- Should store hashed passwords
+);
+
+-- Insert default admin user (Make sure to hash passwords in real implementation)
+INSERT INTO admin (username, password) VALUES ('admin', 'admin'); 
+
+-- User table
+CREATE TABLE user (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(45) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,  -- Use hashed passwords
+    email VARCHAR(100) UNIQUE NOT NULL,
+    mobile VARCHAR(15) NOT NULL,
+    address TEXT,
+    dob DATE,
+    gender ENUM('Male', 'Female', 'Other'),
+    pincode VARCHAR(10),
+    status ENUM('Active', 'Inactive') DEFAULT 'Active',
+    image LONGBLOB
+);
+
+-- Categories table
+CREATE TABLE categories (
+    si_no INT AUTO_INCREMENT PRIMARY KEY,
+    categorie VARCHAR(50) UNIQUE NOT NULL
+);
+
+-- Products table
+CREATE TABLE posts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    p_name VARCHAR(255) NOT NULL,
+    p_price DECIMAL(10,2) NOT NULL,
+    p_desc TEXT,
+    p_image LONGBLOB,
+    categorie VARCHAR(50) NOT NULL,
+    rank INT DEFAULT 0, -- Assuming rank is numerical
+    FOREIGN KEY (categorie) REFERENCES categories(categorie)
+);
+
+-- Search history table
+CREATE TABLE search (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user VARCHAR(50) NOT NULL,
+    p_name VARCHAR(255),
+    categorie VARCHAR(50),
+    keyword VARCHAR(255),
+    dt DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Recommendations table
+CREATE TABLE recommendations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    rec_by VARCHAR(50) NOT NULL,
+    rec_details TEXT,
+    p_name VARCHAR(255),
+    categorie VARCHAR(50),
+    dt DATETIME DEFAULT CURRENT_TIMESTAMP
+);
