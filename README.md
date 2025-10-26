@@ -45,13 +45,13 @@ A-Fuzzy-preference-tree-based-recommeder-system/
 git clone https://github.com/akhileshchary/A-Fuzzy-preference-tree-based-recommeder-system.git
 cd A-Fuzzy-preference-tree-based-recommeder-system
 
-2. Set up the database
+### 2. Set up the database
 
 Import database.sql into your MySQL or SQLite database.
 
 Update database configuration in the project’s source code (if applicable).
 
-3. Run the system
+### 3. Run the system
 
 Depending on the implementation:
 
@@ -65,7 +65,7 @@ If it’s a Python project:
 
 python main.py
 
-🧠 Algorithm Description
+## 🧠 Algorithm Description
 
 Input collection: User preferences and historical data.
 
@@ -77,7 +77,7 @@ Recommendation: Compute user-item matching scores based on fuzzy inference.
 
 Evaluation: Measure precision, recall, and F1-score of recommendations.
 
-📊 Example Use Case
+## 📊 Example Use Case
 
 A movie recommendation scenario:
 
@@ -87,22 +87,22 @@ The system constructs a fuzzy preference tree to interpret these preferences.
 
 Outputs top-ranked movie recommendations with fuzzy confidence scores.
 
-🧪 Experimental Results (Optional)
+## 🧪 Experimental Results (Optional)
 
 (You can add graphs, screenshots, or metrics here.)
 
-📜 License
+## 📜 License
 
 This project is licensed under the Apache License 2.0 — see the LICENSE
  file for details.
 
-👨‍💻 Author
+## 👨‍💻 Author
 
 Akhilesh Chary
 📧 akhileshcharymogili@gmail.com
 🌐 https://github.com/akhileshchary
 
-⭐ Acknowledgements
+## ⭐ Acknowledgements
 
 Inspired by academic research on fuzzy decision trees and recommender systems.
 
